@@ -1,4 +1,7 @@
+<<<<<<< HEAD
 # %%
+=======
+>>>>>>> 260638f2782e7fb114c369fca9a5823a52a66454
 import cv2
 import numpy as np
 import matplotlib.pyplot as plt
@@ -12,10 +15,15 @@ def transform(image1_path, image2_path):
     
     image1 = cv2.imread(image1_path, cv2.IMREAD_GRAYSCALE)
     image2 = cv2.imread(image2_path, cv2.IMREAD_GRAYSCALE)
+<<<<<<< HEAD
     #print(image1)
     
     #assert image1 is None, "One or Both images failed to load. Check the file paths."
     #assert image2 is None, "One or Both images failed to load. Check the file paths."
+=======
+    
+    assert image1 is None or image2 is None, "One or Both images failed to load. Check the file."
+>>>>>>> 260638f2782e7fb114c369fca9a5823a52a66454
     
     image1 = resize(image1, (500,500), anti_aliasing=True)
     image2 = resize(image2, (500,500), anti_aliasing=True)
@@ -38,5 +46,9 @@ def transform(image1_path, image2_path):
     
     print(f"Number of matches: {len(matches)}")
     
+<<<<<<< HEAD
     return keypoints1, keypoints2, matches, dst, src
 
+=======
+    return keypoints1, keypoints2, matches, dst, src
+>>>>>>> 260638f2782e7fb114c369fca9a5823a52a66454
