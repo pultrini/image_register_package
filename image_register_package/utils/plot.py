@@ -1,16 +1,18 @@
 import matplotlib.pyplot as plt
+import cv2
 from skimage.transform import AffineTransform, warp, resize
-from skimage.feature import ORB, match_descriptors, plot_matches
+from skimage.feature import ORB, match_descriptors
+from skimage.feature import plot_matches as skimage_plot_matches 
 from skimage.measure import ransac
 
-def plot_matches(image1_path, image2_path, keypoints1, keypoints2):
+def plot_matches(image1_path, image2_path, keypoints1, keypoints2, matches):
     assert isinstance(image1_path, str), "The Image 1 path it must be String."
     assert isinstance(image2_path, str), "The Image 2 path it must be String."
     
     image1 = cv2.imread(image1_path, cv2.IMREAD_GRAYSCALE)
     image2 = cv2.imread(image2_path, cv2.IMREAD_GRAYSCALE)
     
-    assert image1 is None or image2 is None, "One or Both images failed to load. Check the file."
+    #assert image1 is None or image2 is None, "One or Both images failed to load. Check the file."
     
     image1 = resize(image1, (500,500), anti_aliasing=True)
     image2 = resize(image2, (500,500), anti_aliasing=True)
@@ -18,7 +20,8 @@ def plot_matches(image1_path, image2_path, keypoints1, keypoints2):
     fig, ax = plt.subplots(1,1, figsize = (12,6))
     plt.gray()
     
-    plot_matches(ax, image1, image2, keypoints1, keypoints2)
+    skimage_plot_matches(ax, image1, image2, keypoints1, keypoints2, matches)
+    
     ax.axis("off")
     ax.set_title("Keypoints Matches")
     plt.show()
@@ -33,7 +36,7 @@ def plot_register_image(image1_path, image2_path, src, dst):
     image1 = cv2.imread(image1_path, cv2.IMREAD_GRAYSCALE)
     image2 = cv2.imread(image2_path, cv2.IMREAD_GRAYSCALE)
     
-    assert image1 is None or image2 is None, "One or Both images failed to load. Check the file."
+    #assert image1 is None or image2 is None, "One or Both images failed to load. Check the file."
     
     image1 = resize(image1, (500,500), anti_aliasing=True)
     image2 = resize(image2, (500,500), anti_aliasing=True)
